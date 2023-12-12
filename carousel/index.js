@@ -10,5 +10,5 @@ export const startCarouselOfImages = async () => {
     const rootDiv = document.querySelector('.root')
     start(images, 500, rootDiv);
     onMouseEnter();
-    onMouseLeave(images, 500);
+    onMouseLeave();
 }
