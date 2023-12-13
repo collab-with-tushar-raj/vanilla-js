@@ -6,3 +6,4 @@
 
 - Open terminal at the root directory (vanilla-js)
 - Run the command `http-server`
+- Open your browser and hit the url: `http://localhost:8080/index.html`

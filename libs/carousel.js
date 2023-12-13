@@ -2,48 +2,42 @@ let intervalId;
 let counter = 0;
 let collection;
 let timer;
+let containingBox;
 
-export const start = (array, timeInMilliseconds, rootNode) => {
-    collection = array;
+export const Carousel = {
+    start(array, timeInMilliseconds, container) {
+        initialise(array, timeInMilliseconds, container)
+        startInterval();
+    },
+    stop() {
+        clearInterval(intervalId);
+    },
+    resume() {
+        startInterval();
+    }
+}
+
+const initialise = (data, timeInMilliseconds, container) => {
+    collection = data;
     timer = timeInMilliseconds;
-    const div = document.createElement('div');
-    div.id = 'carousel_div';
-    div.style.border = '1px solid';
-    div.style.width = '500px';
-    div.style.height = '500px';
-    startInterval(div);
-    rootNode.appendChild(div);
+    containingBox = container;
 }
 
-const addChildToParent = (parent, childNode, attrName, attrValue) => {
-    parent.replaceChildren();
+const addImageToContainer = (childNode, attrName, attrValue) => {
+    containingBox.replaceChildren();
     childNode.setAttribute(attrName, attrValue);
-    parent.appendChild(childNode);
+    containingBox.appendChild(childNode);
 }
 
-const startInterval = (div) => {
+const startInterval = () => {
     function displayImage() {
         if (counter > collection.length - 1) {
             counter = 0;
         }
         const imageNode = document.createElement('img');
         imageNode.width = 500; imageNode.height = 500;
-        addChildToParent(div, imageNode, 'src', collection[counter]['urls']['thumb']);
+        addImageToContainer(imageNode, 'src', collection[counter]['urls']['thumb']);
         counter++;
     }
     intervalId = setInterval(displayImage, timer)
-}
-
-export const onMouseEnter = () => {
-    const div = document.querySelector('#carousel_div')
-    div.addEventListener('mouseenter', () => {
-        clearInterval(intervalId);
-    });
-}
-
-export const onMouseLeave = () => {
-    const div = document.querySelector('#carousel_div');
-    div.addEventListener('mouseleave', () => {
-        startInterval(div);
-    });
 }
