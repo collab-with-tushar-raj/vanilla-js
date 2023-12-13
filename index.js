@@ -1,3 +1,3 @@
-import { startCarouselOfImages } from "./carousel/index.js";
+import { carouselOfImages } from "./features/carouselOfImages.js";
 
-startCarouselOfImages();
+carouselOfImages();

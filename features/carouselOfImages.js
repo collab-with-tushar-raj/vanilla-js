@@ -1,6 +1,6 @@
-import { onMouseEnter, onMouseLeave, start } from "./startCarousel.js";
+import { onMouseEnter, onMouseLeave, start } from "../libs/carousel.js";
 
-export const startCarouselOfImages = async () => {
+export const carouselOfImages = async () => {
     const apiResponse = await fetch(`https://api.unsplash.com/photos/`, {
         headers: {
             'Authorization': `Client-ID iRw2TcH8Mu2Akeo5fxgb2BNZDAhFB4bTpXajlaYyw7Q`
